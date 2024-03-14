@@ -6,6 +6,7 @@ import com.aplicationspringboot.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +24,14 @@ public class UserResources {
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> findAllUsers(){
-        List<User> users = userService.findAll();
-        List<UserDTO> listDTO = users.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+        List<UserDTO> listDTO = userService.findAll();
         return ResponseEntity.ok().body(listDTO);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> findUsersById(@PathVariable("id") String id){
+        UserDTO userDTO = userService.findById(id);
+        return ResponseEntity.ok().body(userDTO);
+    }
+
 }
