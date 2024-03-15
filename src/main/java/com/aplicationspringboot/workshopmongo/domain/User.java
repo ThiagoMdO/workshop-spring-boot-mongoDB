@@ -1,5 +1,6 @@
 package com.aplicationspringboot.workshopmongo.domain;
 
+import com.aplicationspringboot.workshopmongo.dto.UserDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

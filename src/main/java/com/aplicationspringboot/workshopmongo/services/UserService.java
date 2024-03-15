@@ -28,4 +28,14 @@ public class UserService {
         User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User not found"));
         return new UserDTO(user);
     }
+
+    public UserDTO create(User user){
+        //o metodo insert vai lançar uma excecao caso nao achar o usuario no banco
+        user = userRepository.insert(user);
+        return new UserDTO(user);
+    }
+
+    public User UserDTOToUser(UserDTO userDTO){
+        return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
+    }
 }

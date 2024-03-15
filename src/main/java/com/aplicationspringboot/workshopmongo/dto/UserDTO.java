@@ -1,6 +1,7 @@
 package com.aplicationspringboot.workshopmongo.dto;
 
 import com.aplicationspringboot.workshopmongo.domain.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class UserDTO implements Serializable {
         this.email = user.getEmail();
     }
 
+    @JsonIgnore
     public String getId() {
         return id;
     }
