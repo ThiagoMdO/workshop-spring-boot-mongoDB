@@ -1,6 +1,5 @@
 package com.aplicationspringboot.workshopmongo.resources;
 
-import com.aplicationspringboot.workshopmongo.domain.User;
 import com.aplicationspringboot.workshopmongo.dto.UserDTO;
 import com.aplicationspringboot.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -35,7 +31,7 @@ public class UserResources {
 
     @PostMapping
     public ResponseEntity<UserDTO> createNewUser(@RequestBody UserDTO userDTORequest) {
-        UserDTO userDTO = userService.create(userService.UserDTOToUser(userDTORequest));
+        UserDTO userDTO = userService.create(userService.userDTOToUser(userDTORequest));
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
         .buildAndExpand(userDTO.getId()).toUri();
 
@@ -47,4 +43,11 @@ public class UserResources {
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDTO> updateUser(@PathVariable String id, @RequestBody UserDTO userDTO){
+        UserDTO userDTOResponse = userService.update(id, userDTO);
+        return ResponseEntity.ok().body(userDTOResponse);
+    }
+
 }

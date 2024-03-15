@@ -7,9 +7,7 @@ import com.aplicationspringboot.workshopmongo.services.exception.ObjectNotFoundE
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,7 +38,18 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User UserDTOToUser(UserDTO userDTO){
+    public UserDTO update(String id, UserDTO userDTO){
+        findById(id);
+
+        User userToDB = userDTOToUser(userDTO);
+        userToDB.setId(id);
+
+        userRepository.insert(userToDB);
+
+        return new UserDTO(userToDB);
+    }
+
+    public User userDTOToUser(UserDTO userDTO){
         return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
     }
 }
