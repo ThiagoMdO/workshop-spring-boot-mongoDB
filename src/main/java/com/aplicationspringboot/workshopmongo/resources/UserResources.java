@@ -1,5 +1,7 @@
 package com.aplicationspringboot.workshopmongo.resources;
 
+import com.aplicationspringboot.workshopmongo.domain.Post;
+import com.aplicationspringboot.workshopmongo.domain.User;
 import com.aplicationspringboot.workshopmongo.dto.UserDTO;
 import com.aplicationspringboot.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +52,9 @@ public class UserResources {
         return ResponseEntity.ok().body(userDTOResponse);
     }
 
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> findAllPosts(@PathVariable String id){
+        UserDTO userDTO = userService.findById(id);
+        return ResponseEntity.ok().body(userDTO.getPosts());
+    }
 }

@@ -1,10 +1,13 @@
 package com.aplicationspringboot.workshopmongo.dto;
 
+import com.aplicationspringboot.workshopmongo.domain.Post;
 import com.aplicationspringboot.workshopmongo.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDTO implements Serializable {
 
@@ -17,6 +20,8 @@ public class UserDTO implements Serializable {
 
     private String email;
 
+    private List<Post> posts = new ArrayList<>();
+
     public UserDTO() {
     }
 
@@ -24,6 +29,7 @@ public class UserDTO implements Serializable {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();
+        this.posts = user.getPosts();
     }
 
     @JsonIgnore
@@ -49,5 +55,13 @@ public class UserDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }
