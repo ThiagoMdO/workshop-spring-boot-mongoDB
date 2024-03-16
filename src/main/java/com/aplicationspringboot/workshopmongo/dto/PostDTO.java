@@ -33,6 +33,7 @@ public class PostDTO implements Serializable {
         this.title = post.getTitle();
         this.body = post.getBody();
         this.author = post.getAuthor();
+        this.comment = post.getComments();
     }
 
     public String getId() {

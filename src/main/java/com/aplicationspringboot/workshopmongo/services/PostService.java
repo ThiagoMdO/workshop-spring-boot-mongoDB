@@ -7,6 +7,9 @@ import com.aplicationspringboot.workshopmongo.services.exception.ObjectNotFoundE
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PostService {
 
@@ -16,5 +19,11 @@ public class PostService {
     public PostDTO findPost(String id){
         Post post = postRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Post not found"));
         return new PostDTO(post);
+    }
+
+    public List<PostDTO> findPostsByTitle(String title){
+        List<Post> posts = postRepository.findByTitleContainingIgnoreCase(title);
+        List<PostDTO> postDTOS = posts.stream().map(x -> new PostDTO(x)).collect(Collectors.toList());
+        return postDTOS;
     }
 }
