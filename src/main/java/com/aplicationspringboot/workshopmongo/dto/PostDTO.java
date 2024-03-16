@@ -4,7 +4,9 @@ import com.aplicationspringboot.workshopmongo.domain.Post;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PostDTO implements Serializable {
     @Serial
@@ -19,6 +21,8 @@ public class PostDTO implements Serializable {
     private String body;
 
     private AuthorDTO author;
+
+    private List<CommentDTO> comment = new ArrayList<>();
 
     public PostDTO(){
     }
@@ -69,5 +73,13 @@ public class PostDTO implements Serializable {
 
     public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+
+    public List<CommentDTO> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<CommentDTO> comment) {
+        this.comment = comment;
     }
 }
