@@ -29,7 +29,7 @@ public class Post implements Serializable {
 
     private AuthorDTO author;
 
-    private List<CommentDTO> comment = new ArrayList<>();
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public Post(){
     }
@@ -83,11 +83,11 @@ public class Post implements Serializable {
     }
 
     public List<CommentDTO> getComments() {
-        return comment;
+        return comments;
     }
 
-    public void setComment(List<CommentDTO> comment) {
-        this.comment = comment;
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     @Override

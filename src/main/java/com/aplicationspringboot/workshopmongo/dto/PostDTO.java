@@ -22,7 +22,7 @@ public class PostDTO implements Serializable {
 
     private AuthorDTO author;
 
-    private List<CommentDTO> comment = new ArrayList<>();
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public PostDTO(){
     }
@@ -33,7 +33,7 @@ public class PostDTO implements Serializable {
         this.title = post.getTitle();
         this.body = post.getBody();
         this.author = post.getAuthor();
-        this.comment = post.getComments();
+        this.comments = post.getComments();
     }
 
     public String getId() {
@@ -76,11 +76,11 @@ public class PostDTO implements Serializable {
         this.author = author;
     }
 
-    public List<CommentDTO> getComment() {
-        return comment;
+    public List<CommentDTO> getComments() {
+        return comments;
     }
 
-    public void setComment(List<CommentDTO> comment) {
-        this.comment = comment;
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 }
